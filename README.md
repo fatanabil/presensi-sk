@@ -11,6 +11,8 @@ How to run web app
 5. login with activated account
 6. Done
 
+this web app developed using Codeigniter 4
+
 ## CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
