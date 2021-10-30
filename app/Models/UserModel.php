@@ -248,4 +248,22 @@ class UserModel extends Model
 
         return $this->db->affectedRows();
     }
+
+    public function searchAPI($keyword, $kelas, $tglawal = '', $tglakhir = '')
+    {
+        $this->builder = $this->db->table('siswa');
+        $this->builder->select('siswa.id_siswa, siswa.nama, semester, tanggal, absen');
+        $this->builder->join('absensi', 'absensi.id_siswa = siswa.id_siswa');
+        $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
+        $this->builder->like('nama', $keyword);
+        $this->builder->where('tanggal >=', $tglawal);
+        $this->builder->where('tanggal <=', $tglakhir);
+        $this->builder->where('kelas', $kelas);
+        $this->builder->orderBy('tanggal', 'DESC');
+        $this->builder->orderBy('siswa.nama', 'ASC');
+
+        $query = $this->builder->get();
+
+        return $query;
+    }
 }
