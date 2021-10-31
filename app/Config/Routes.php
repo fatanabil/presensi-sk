@@ -42,7 +42,7 @@ $routes->get('/absensi', 'User::absensi');
 $routes->get('/rekap', 'User::rekap');
 $routes->get('/cari', 'User::cari');
 $routes->get('/rekap-pdf/(:any)/(:any)', 'Pdf::index/$1/$2');
-$routes->resource('absensi-api', ['controller' => 'App\Controller\AbsensiAPI']);
+$routes->resource('api-absensi', ['controller' => 'Api\Api']);
 
 /*
  * --------------------------------------------------------------------
