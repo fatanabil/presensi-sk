@@ -36,7 +36,7 @@ class Database extends Config
 		'username' => 'kyogfulmdytmqp',
 		'password' => '13dfaef1a44a91a9f89b6a60cb0a4b5ab000aaa09cab16edc619790381d6781b',
 		'database' => 'd19juso4sksa3t',
-		'DBDriver' => 'MySQLi',
+		'DBDriver' => 'Postgre',
 		'DBPrefix' => '',
 		'pConnect' => false,
 		'DBDebug'  => (ENVIRONMENT !== 'production'),
