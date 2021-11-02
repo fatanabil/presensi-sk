@@ -64,7 +64,7 @@ class Auth extends BaseController
 			$this->session->setFlashdata('fail-reg', 'Registrasi gagal');
 		}
 
-		return redirect()->to(base_url() . '/register');
+		return redirect()->to(base_url() . '/login');
 	}
 
 	public function validLogin()
