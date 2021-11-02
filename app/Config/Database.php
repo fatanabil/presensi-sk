@@ -30,25 +30,25 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
-	// public $default = [
-	// 	'DSN'      => '',
-	// 	'hostname' => 'ec2-52-203-74-38.compute-1.amazonaws.com',
-	// 	'username' => 'jrhxunguzhhpuj',
-	// 	'password' => 'fdb7ee76663f9146b4a13e23d0f9a8da1e6c40920a719a1b9e21a9f6561be49b',
-	// 	'database' => 'd1o3sq0igkg4pc',
-	// 	'DBDriver' => 'Postgre',
-	// 	'DBPrefix' => '',
-	// 	'pConnect' => false,
-	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
-	// 	'charset'  => 'utf8',
-	// 	'DBCollat' => 'utf8_general_ci',
-	// 	'swapPre'  => '',
-	// 	'encrypt'  => false,
-	// 	'compress' => false,
-	// 	'strictOn' => false,
-	// 	'failover' => [],
-	// 	'port'     => 5432,
-	// ];
+	public $default = [
+		'DSN'      => '',
+		'hostname' => 'ec2-52-203-74-38.compute-1.amazonaws.com',
+		'username' => 'jrhxunguzhhpuj',
+		'password' => 'fdb7ee76663f9146b4a13e23d0f9a8da1e6c40920a719a1b9e21a9f6561be49b',
+		'database' => 'd1o3sq0igkg4pc',
+		'DBDriver' => 'Postgre',
+		'DBPrefix' => '',
+		'pConnect' => false,
+		'DBDebug'  => (ENVIRONMENT !== 'production'),
+		'charset'  => 'utf8',
+		'DBCollat' => 'utf8_general_ci',
+		'swapPre'  => '',
+		'encrypt'  => false,
+		'compress' => false,
+		'strictOn' => false,
+		'failover' => [],
+		'port'     => 5432,
+	];
 
 	// public $default = [
 	// 	'DSN'      => '',
@@ -71,25 +71,25 @@ class Database extends Config
 	// ];
 
 	//postgres
-	public $default = [
-		'DSN'      => '',
-		'hostname' => '127.0.0.1',
-		'username' => 'postgres',
-		'password' => 'root',
-		'database' => 'absensi-sk',
-		'DBDriver' => 'Postgre',
-		'DBPrefix' => '',
-		'pConnect' => false,
-		'DBDebug'  => (ENVIRONMENT !== 'production'),
-		'charset'  => 'utf8',
-		'DBCollat' => 'utf8_general_ci',
-		'swapPre'  => '',
-		'encrypt'  => false,
-		'compress' => false,
-		'strictOn' => false,
-		'failover' => [],
-		'port'     => 5432,
-	];
+	// public $default = [
+	// 	'DSN'      => '',
+	// 	'hostname' => '127.0.0.1',
+	// 	'username' => 'postgres',
+	// 	'password' => 'root',
+	// 	'database' => 'absensi-sk',
+	// 	'DBDriver' => 'Postgre',
+	// 	'DBPrefix' => '',
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 5432,
+	// ];
 
 	/**
 	 * This database connection is used when
