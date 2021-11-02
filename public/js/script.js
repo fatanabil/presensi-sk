@@ -6,6 +6,8 @@ $(document).ready(function(){
     var kelas = $('#kelas').text()
     var smt = 'all'
 
+    console.log(g_tglAkhir)
+
     $('#toggle-date').click(function(){
         $('.tanggal').prop('disabled', function (_, val){
             return !val

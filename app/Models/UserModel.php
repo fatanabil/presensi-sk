@@ -148,9 +148,7 @@ class UserModel extends Model
         $this->builder->select('siswa.id_siswa, siswa.nama, semester, tanggal, absen');
         $this->builder->join('absensi', 'absensi.id_siswa = siswa.id_siswa');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
-        $this->builder->like('nama', $keyword);
-        $this->builder->like('tanggal', $tglawal);
-        $this->builder->like('tanggal', $tglakhir);
+        $this->builder->like('nama', $keyword, 'both', true, true);
         $this->builder->where('kelas', $kelas);
         $this->builder->orderBy('tanggal', 'DESC');
         $this->builder->orderBy('siswa.nama', 'ASC');
@@ -166,7 +164,7 @@ class UserModel extends Model
         $this->builder->select('siswa.id_siswa, siswa.nama, semester, tanggal, absen');
         $this->builder->join('absensi', 'absensi.id_siswa = siswa.id_siswa');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
-        $this->builder->like('nama', $keyword);
+        $this->builder->like('nama', $keyword, 'both', true, true);
         $this->builder->where('tanggal >=', $tglawal);
         $this->builder->where('tanggal <=', $tglakhir);
         $this->builder->where('kelas', $kelas);
@@ -180,13 +178,16 @@ class UserModel extends Model
 
     public function getTglDist($keyword, $kelas, $tglawal = '', $tglakhir = '')
     {
+        $tglawalN = date('Y-m-d', strtotime($tglawal));
+        $tglakhirN = date('Y-m-d', strtotime($tglakhir));
+
         $this->builder = $this->db->table('absensi');
         $this->builder->select('tanggal');
         $this->builder->join('siswa', 'siswa.id_siswa = absensi.id_siswa');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
-        $this->builder->like('nama', $keyword);
-        $this->builder->like('tanggal', $tglawal);
-        $this->builder->like('tanggal', $tglakhir);
+        $this->builder->Like('nama', $keyword, 'both', true, true);
+        $this->builder->like('tanggal', $tglawalN);
+        $this->builder->like('tanggal', $tglakhirN);
         $this->builder->where('kelas', $kelas);
         $this->builder->distinct('tanggal');
         $this->builder->orderBy('tanggal', 'DESC');
@@ -203,7 +204,7 @@ class UserModel extends Model
         $this->builder->select('tanggal');
         $this->builder->join('siswa', 'siswa.id_siswa = absensi.id_siswa');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
-        $this->builder->like('nama', $keyword);
+        $this->builder->like('nama', $keyword, 'both', true, true);
         $this->builder->where('tanggal >=', $tglawal);
         $this->builder->where('tanggal <=', $tglakhir);
         $this->builder->where('kelas', $kelas);

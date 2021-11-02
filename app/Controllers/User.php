@@ -108,8 +108,8 @@ class User extends BaseController
     {
         $data['title'] = 'Cari Data Absen';
         $keyword = '';
-        $tglAwal = '';
-        $tglAkhir = '';
+        $tglAwal = date('d-m-Y');
+        $tglAkhir = date('d-m-Y');
 
         $dt = $this->request->getPost();
 
