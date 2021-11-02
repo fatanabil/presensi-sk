@@ -48,4 +48,4 @@ Options All -Indexes
 	ServerSignature Off
 # Disable server signature end
 
-SetEnv CI_ENVIRONMENT development
+SetEnv CI_ENVIRONMENT production
