@@ -33,6 +33,7 @@ class Auth extends BaseController
 	public function validRegister()
 	{
 		$data = $this->request->getPost();
+		$data['username'] = $this->request->getPost('username');
 
 		$this->validation->run($data);
 
@@ -51,16 +52,17 @@ class Auth extends BaseController
 
 		$salt = uniqid('', true);
 
+		$data['salt'] = $salt;
+
 		$pass = md5($data['password'] . $salt);
 
-		$this->userModel->save([
-			'username' => $data['username'],
-			'salt' => $salt,
-			'password_hash' => $pass,
-			'level' => 'user'
-		]);
+		$data['password_hash'] = $pass;
 
-		$this->session->setFlashdata('login', 'Anda berhasil mendaftar, silahkan hubungi Admin untuk melakukan aktivasi');
+		if ($this->userModel->saveReg($data) > 1) {
+			$this->session->setFlashdata('login', 'Anda berhasil mendaftar, silahkan hubungi Admin untuk melakukan aktivasi');
+		} else {
+			$this->session->setFlashdata('fail-reg', 'Registrasi gagal');
+		}
 
 		return redirect()->to(base_url() . '/login');
 	}

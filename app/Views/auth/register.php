@@ -16,6 +16,12 @@
                                     </div>
                                 <?php endif; ?>
 
+                                <?php if (session()->getFlashData('fail-reg')) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?= session()->getFlashData('fail-reg'); ?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <?php if (session()->getFlashData('rep')) : ?>
                                     <div class="alert alert-danger" role="alert">
                                         <?= session()->getFlashData('rep'); ?>
