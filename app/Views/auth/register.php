@@ -22,6 +22,12 @@
                                     </div>
                                 <?php endif; ?>
 
+                                <?php if (session()->getFlashData('login')) : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?= session()->getFlashData('login'); ?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <?php if (session()->getFlashData('rep')) : ?>
                                     <div class="alert alert-danger" role="alert">
                                         <?= session()->getFlashData('rep'); ?>
