@@ -39,7 +39,7 @@ class Database extends Config
 		'DBDriver' => 'Postgre',
 		'DBPrefix' => '',
 		'pConnect' => false,
-		'DBDebug'  => (ENVIRONMENT !== 'development'),
+		'DBDebug'  => (ENVIRONMENT !== 'production'),
 		'charset'  => 'utf8',
 		'DBCollat' => 'utf8_general_ci',
 		'swapPre'  => '',
