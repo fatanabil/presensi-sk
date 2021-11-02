@@ -30,12 +30,53 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
+	// public $default = [
+	// 	'DSN'      => '',
+	// 	'hostname' => 'ec2-52-203-74-38.compute-1.amazonaws.com',
+	// 	'username' => 'jrhxunguzhhpuj',
+	// 	'password' => 'fdb7ee76663f9146b4a13e23d0f9a8da1e6c40920a719a1b9e21a9f6561be49b',
+	// 	'database' => 'd1o3sq0igkg4pc',
+	// 	'DBDriver' => 'Postgre',
+	// 	'DBPrefix' => '',
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 5432,
+	// ];
+
+	// public $default = [
+	// 	'DSN'      => '',
+	// 	'hostname' => '127.0.0.1',
+	// 	'username' => 'root',
+	// 	'password' => '',
+	// 	'database' => 'absensi-siswa',
+	// 	'DBDriver' => 'MySQLi',
+	// 	'DBPrefix' => '',
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 3306,
+	// ];
+
+	//postgres
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'ec2-35-169-43-5.compute-1.amazonaws.com',
-		'username' => 'kyogfulmdytmqp',
-		'password' => '13dfaef1a44a91a9f89b6a60cb0a4b5ab000aaa09cab16edc619790381d6781b',
-		'database' => 'd19juso4sksa3t',
+		'hostname' => '127.0.0.1',
+		'username' => 'postgres',
+		'password' => 'root',
+		'database' => 'absensi-sk',
 		'DBDriver' => 'Postgre',
 		'DBPrefix' => '',
 		'pConnect' => false,
