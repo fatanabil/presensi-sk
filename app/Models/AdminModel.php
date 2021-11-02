@@ -20,6 +20,7 @@ class AdminModel extends Model
 	{
 		$this->builder = $this->db->table('users');
 		$this->builder->select('id_user, username, fullname, level');
+		$this->builder->orderBy('level', 'ASC');
 		$query = $this->builder->get()->getResult();
 
 		return $query;
