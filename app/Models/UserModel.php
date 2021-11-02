@@ -231,11 +231,11 @@ class UserModel extends Model
 
     public function saveprofile($data)
     {
+        d($data);
         $this->builder = $this->db->table('users');
-        $this->builder->set('users.fullname', $data['fullname']);
-        $this->builder->set('users.username', $data['username']);
+        $this->builder->set('username', $data['username']);
+        $this->builder->set('fullname', $data['fullname']);
         $this->builder->where('username', $data['username']);
-        unset($data['username']);
         $this->builder->update();
 
         return $this->db->affectedRows();
@@ -246,6 +246,19 @@ class UserModel extends Model
         $this->builder = $this->db->table('guru');
         $this->builder->where('id_guru', $id);
         $this->builder->update(['alamat' => $alamat]);
+
+        return $this->db->affectedRows();
+    }
+
+    public function saveReg($data)
+    {
+        $this->builder('users');
+        $this->save([
+            'username' => $data['username'],
+            'salt' => $data['salt'],
+            'password_hash' => $data['password_hash'],
+            'level' => 'user'
+        ]);
 
         return $this->db->affectedRows();
     }
