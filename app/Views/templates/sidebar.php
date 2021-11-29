@@ -25,6 +25,12 @@
                 <i class="fas fa-users"></i>
                 <span>User List</span></a>
         </li>
+        <!-- Nav Item - Profil -->
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url(); ?>/admin/dataguru">
+                <i class="fas fa-users"></i>
+                <span>Data Guru</span></a>
+        </li>
 
     <?php endif;
     ?>
