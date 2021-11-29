@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AdminModel;
 
+use function PHPUnit\Framework\isEmpty;
+
 class Admin extends BaseController
 {
 	protected $adminModel;
@@ -64,5 +66,16 @@ class Admin extends BaseController
 
 			return redirect()->to(base_url() . '/userlists');
 		}
+	}
+
+	public function dataguru()
+	{
+		$data['guru'] = $this->adminModel->getDataGuruAll();
+		$data['kelas'] = $this->adminModel->getKelas();
+
+		$ajax = $this->request->getPost('kelas');
+		d($ajax);
+
+		return view('admin/guru', $data);
 	}
 }

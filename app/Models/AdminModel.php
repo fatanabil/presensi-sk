@@ -48,6 +48,19 @@ class AdminModel extends Model
 		return $query;
 	}
 
+	public function getDataGuruAll()
+	{
+		$this->builder = $this->db->table('users');
+		$this->builder->select('users.id_user, username, guru.nama, guru.id_guru, guru.jenkel, guru.alamat, kelas.kelas');
+		$this->builder->join('user_guru_group', 'user_guru_group.id_user = users.id_user');
+		$this->builder->join('guru', 'guru.id_guru = user_guru_group.id_guru');
+		$this->builder->join('kelas', 'kelas.id_guru = guru.id_guru');
+		$this->builder->orderBy('kelas.id_kelas', 'ASC');
+		$query = $this->builder->get()->getResult();
+
+		return $query;
+	}
+
 	public function getKelas()
 	{
 		$this->builder = $this->db->table('kelas');
