@@ -18,13 +18,11 @@
                             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-lg ml-5">
                                 <input type="hidden" readonly class="form-control-plaintext" name="id" id="nama" value="<?= $user->id_user; ?>">
-                                <input type="text" readonly class="form-control-plaintext" id="nama" value="<?= $user->nama; ?>">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
-                            <div class="col-lg ml-5">
-                                <input type="text" readonly class="form-control-plaintext" id="username" value="<?= $user->kelas; ?>">
+                                <select class="form-control form-control-solid" name="id-nama" id="level">
+                                    <?php foreach ($guru as $dt) : ?>
+                                        <option value="<?= $dt->id_guru; ?>"><?= $dt->nama; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-2">
