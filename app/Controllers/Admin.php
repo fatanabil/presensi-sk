@@ -50,6 +50,7 @@ class Admin extends BaseController
 	{
 		$data['title'] = 'Edit User';
 		$data['user'] = $this->adminModel->getDataGuru($id);
+		$data['guru'] = $this->adminModel->getIdGuru();
 
 		return view('admin/edit', $data);
 	}
@@ -57,7 +58,8 @@ class Admin extends BaseController
 	public function save()
 	{
 		$data = $this->request->getPost();
-		if ($this->adminModel->changeLevel($data['id'], $data['level']) > 0) {
+
+		if ($this->adminModel->updateUser($data['id'], $data['level']) > 0 && $this->adminModel->insertIdUserGuru($data['id'], $data['id-nama']) > 0) {
 			$this->session->setFlashdata('edit-b', 'Data Berhasil diubah');
 
 			return redirect()->to(base_url() . '/userlists');
@@ -73,9 +75,36 @@ class Admin extends BaseController
 		$data['guru'] = $this->adminModel->getDataGuruAll();
 		$data['kelas'] = $this->adminModel->getKelas();
 
-		$ajax = $this->request->getPost('kelas');
-		d($ajax);
-
 		return view('admin/guru', $data);
+	}
+
+	public function addDataGuru()
+	{
+		$data = $this->request->getPost();
+		$data = $this->flipDiagonally($data);
+
+		foreach ($data as $dt) {
+			$cek = $this->adminModel->saveDataGuru($dt);
+		}
+
+		if ($cek > 0) {
+			$this->session->setFlashdata('guru-b', 'Data Guru berhasil ditambah');
+		} else {
+			$this->session->setFlashdata('guru-g', 'Data Guru berhasil ditambah');
+		}
+
+		return redirect()->to('admin/dataguru');
+	}
+
+	function flipDiagonally($arr)
+	{
+		$out = array();
+		foreach ($arr as $key => $subarr) {
+			foreach ($subarr as $subkey => $subvalue) {
+				$out[$subkey][$key] = $subvalue;
+			}
+		}
+
+		return $out;
 	}
 }
