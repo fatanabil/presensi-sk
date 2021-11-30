@@ -38,6 +38,7 @@
                         <th>Username</th>
                         <th>Nama</th>
                         <th>Level</th>
+                        <th>Aktif</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -52,6 +53,13 @@
                                 <td><span class="badge bg-success"><?= $row->level; ?></span></td>
                             <?php else : ?>
                                 <td><span class="badge bg-warning"><?= $row->level; ?></span></td>
+                                <?php if ($row->level == 'user') : ?>
+                                    <?php if ($row->aktif == null) : ?>
+                                        <td><span class="badge bg-danger">Belum Aktif</span></td>
+                                    <?php else : ?>
+                                        <td><span class="badge bg-success">Aktif</span></td>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                                 <td>
                                     <a href="<?= base_url(); ?>/userlists/delete/<?= $row->id_user; ?>" onclick="return confirm('Konfirmasi hapus data user')"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
                                     <a href="<?= base_url(); ?>/userlists/edit/<?= $row->id_user; ?>"><button type="button" class="btn btn-info btn-sm">Edit</button></a>
