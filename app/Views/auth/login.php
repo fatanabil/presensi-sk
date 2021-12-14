@@ -32,6 +32,12 @@
                                     </div>
                                 <?php endif; ?>
 
+                                <?php if (session()->getFlashdata('not-activated')) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?= session()->getFlashData('not-activated'); ?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
                                 </div>
