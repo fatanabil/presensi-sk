@@ -43,15 +43,19 @@ class UserModel extends Model
 
     public function getDataGuru($username)
     {
-        $this->builder = $this->db->table('users');
-        $this->builder->select('guru.id_guru, guru.nama, guru.jenkel, kelas.kelas, guru.alamat');
-        $this->builder->join('user_guru_group', 'user_guru_group.id_user = users.id_user');
-        $this->builder->join('guru', 'user_guru_group.id_guru = guru.id_guru');
-        $this->builder->join('kelas', 'kelas.id_guru = guru.id_guru');
-        $this->builder->where('username', $username);
-        $query = $this->builder->get()->getResult()[0];
+        try {
+            $this->builder = $this->db->table('users');
+            $this->builder->select('guru.id_guru, guru.nama, guru.jenkel, kelas.kelas, guru.alamat');
+            $this->builder->join('user_guru_group', 'user_guru_group.id_user = users.id_user');
+            $this->builder->join('guru', 'user_guru_group.id_guru = guru.id_guru');
+            $this->builder->join('kelas', 'kelas.id_guru = guru.id_guru');
+            $this->builder->where('username', $username);
+            $query = $this->builder->get()->getResult()[0];
 
-        return $query;
+            return $query;
+        } catch (\Throwable $th) {
+            return 0;
+        }
     }
 
     public function getDataSiswa()
@@ -260,6 +264,17 @@ class UserModel extends Model
             'level' => 'user'
         ]);
 
+        $id = $this->getInsertID();
+        $this->saveIdUser($id);
+
         return $this->db->affectedRows();
+    }
+
+    public function saveIdUser($idUser)
+    {
+        $this->builder = $this->db->table('user_guru_group');
+        $this->save([
+            'id_user' => $idUser
+        ]);
     }
 }

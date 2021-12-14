@@ -20,9 +20,14 @@ class User extends BaseController
         if ($this->session->has('isLogin')) {
             if ($this->session->get('level') == 'user') {
                 $this->username = $this->session->get('username');
-                $this->user = $this->userModel->getDataGuru($this->username);
+                if (!$this->username == 0) {
+                    $this->user = $this->userModel->getDataGuru($this->username);
 
-                $this->nmkelas = $this->user->kelas;
+                    $this->nmkelas = $this->user->kelas;
+                } else {
+                    $this->session->setFlashData('not-activated', 'Akun anda belum diaktivasi, Silakan hubungi Admin untuk aktivasi');
+                    redirect()->to(base_url() . '/login');
+                }
             } else {
                 $username = $this->session->get('username');
                 $this->user = $this->userModel->getDataAdmin($username);
@@ -36,11 +41,14 @@ class User extends BaseController
             return redirect()->to(base_url() . '/login');
         }
 
-        $data['title'] = 'My Profile';
-        $data['user'] = $this->user;
+        if ($this->user) {
+            $data['title'] = 'My Profile';
+            $data['user'] = $this->user;
 
-
-        return view('user/index', $data);
+            return view('user/index', $data);
+        } else {
+            return redirect()->to(base_url() . '/login');
+        }
     }
 
     public function absensi()
