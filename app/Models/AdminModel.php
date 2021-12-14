@@ -31,6 +31,7 @@ class AdminModel extends Model
 	public function deleteUser($id)
 	{
 		$this->builder = $this->db->table('users');
+		$this->builder->join('user_guru_group', 'users.id_user = user_guru_group.id_user');
 		$this->builder->where('id_user', $id);
 		$this->builder->delete();
 

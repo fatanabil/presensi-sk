@@ -16,6 +16,7 @@ class Admin extends BaseController
 		$this->session = session();
 		$this->adminModel = new AdminModel();
 	}
+
 	public function index()
 	{
 		if (!$this->session->has('isLogin')) {
