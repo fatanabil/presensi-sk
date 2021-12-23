@@ -72,11 +72,21 @@ class AdminModel extends Model
 		return $query;
 	}
 
+	public function getGuru()
+	{
+		$this->builder = $this->db->table('guru');
+		$this->builder->select('id_guru, nama');
+		$result = $this->builder->get()->getResult();
+
+		return $result;
+	}
+
 	public function getKelas()
 	{
 		$this->builder = $this->db->table('kelas');
-		$this->builder->select('id_kelas, kelas, id_guru');
-		$this->builder->orderBy('id_kelas', 'ASC');
+		$this->builder->select('id_kelas, kelas, kelas.id_guru, guru.nama');
+		$this->builder->join('guru', 'kelas.id_guru = guru.id_guru', 'left');
+		$this->builder->orderBy('kelas', 'ASC');
 		$query = $this->builder->get()->getResult();
 
 		return $query;
@@ -121,5 +131,29 @@ class AdminModel extends Model
 		$this->builder->update([
 			'id_guru' => $id
 		]);
+	}
+
+	public function saveDataKelas($data)
+	{
+		if ($data['guru'] == 'default') {
+			$data['guru'] = null;
+		}
+
+		$this->builder = $this->db->table('kelas');
+		$this->save([
+			'kelas' => $data['nama-kelas'],
+			'id_guru' => $data['guru']
+		]);
+
+		return $this->db->affectedRows();
+	}
+
+	public function delKelas($id)
+	{
+		$this->builder = $this->db->table('kelas');
+		$this->builder->where('id_kelas', $id);
+		$this->builder->delete();
+
+		return $this->db->affectedRows();
 	}
 }

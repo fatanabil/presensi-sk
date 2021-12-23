@@ -91,7 +91,7 @@ class Admin extends BaseController
 		if ($cek > 0) {
 			$this->session->setFlashdata('guru-b', 'Data Guru berhasil ditambah');
 		} else {
-			$this->session->setFlashdata('guru-g', 'Data Guru berhasil ditambah');
+			$this->session->setFlashdata('guru-g', 'Data Guru gagal ditambah');
 		}
 
 		return redirect()->to('admin/dataguru');
@@ -107,5 +107,44 @@ class Admin extends BaseController
 		}
 
 		return $out;
+	}
+
+	public function datakelas()
+	{
+		$data['kelas'] = $this->adminModel->getKelas();
+		$data['guru'] = $this->adminModel->getGuru();
+
+		return view('admin/kelas', $data);
+	}
+
+	public function adddatakelas()
+	{
+		$data = $this->request->getPost();
+		$data = $this->flipDiagonally($data);
+
+		foreach ($data as $dt) {
+			$cek = $this->adminModel->saveDataKelas($dt);
+		}
+
+		if ($cek > 0) {
+			$this->session->setFlashData('kelas-b', 'Data kelas berhasil ditambahkan');
+		} else {
+			$this->session->setFlashData('kelas-g', 'Data kelas gagal ditambahkan');
+		}
+
+		return redirect()->to('admin/datakelas');
+	}
+
+	public function delKelas($id)
+	{
+		$cek = $this->adminModel->delKelas($id);
+
+		if ($cek > 0) {
+			$this->session->setFlashData('del-kelas-b', 'Data kelas berhasil dihapus');
+		} else {
+			$this->session->setFlashData('del-kelas-g', 'Data kelas gagal dihapus');
+		}
+
+		return redirect()->to('admin/datakelas');
 	}
 }

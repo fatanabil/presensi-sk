@@ -19,19 +19,26 @@
             User Management
         </div>
 
-        <!-- Nav Item - Profil -->
+        <!-- Nav Item - user list -->
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url(); ?>/userlists">
                 <i class="fas fa-users"></i>
                 <span>User List</span></a>
         </li>
-        <!-- Nav Item - Profil -->
+
+        <!-- Nav Item - Data Guru -->
         <li class="nav-item">
             <a class="nav-link" href="<?= base_url(); ?>/admin/dataguru">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-chalkboard-teacher"></i>
                 <span>Data Guru</span></a>
         </li>
 
+        <!-- Nav Item - Data Kelas -->
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url(); ?>/admin/datakelas">
+                <i class="fas fa-school"></i>
+                <span>Data Kelas</span></a>
+        </li>
     <?php endif;
     ?>
 
