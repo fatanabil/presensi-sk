@@ -30,7 +30,7 @@
     <?php endif; ?>
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <table class="table table-stripped">
                 <thead>
                     <tr>
@@ -61,8 +61,8 @@
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <td>
+                                    <a href="<?= base_url(); ?>/userlists/edit/<?= $row->id_user; ?>"><button type="button" class="btn btn-info btn-sm">Edit</button></a> |
                                     <a href="<?= base_url(); ?>/userlists/delete/<?= $row->id_user; ?>" onclick="return confirm('Konfirmasi hapus data user')"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
-                                    <a href="<?= base_url(); ?>/userlists/edit/<?= $row->id_user; ?>"><button type="button" class="btn btn-info btn-sm">Edit</button></a>
                                 </td>
                             <?php endif; ?>
                         </tr>
