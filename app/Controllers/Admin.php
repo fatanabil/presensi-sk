@@ -84,6 +84,8 @@ class Admin extends BaseController
 		$data = $this->request->getPost();
 		$data = $this->flipDiagonally($data);
 
+		d($data);
+
 		foreach ($data as $dt) {
 			$cek = $this->adminModel->saveDataGuru($dt);
 		}
@@ -92,6 +94,19 @@ class Admin extends BaseController
 			$this->session->setFlashdata('guru-b', 'Data Guru berhasil ditambah');
 		} else {
 			$this->session->setFlashdata('guru-g', 'Data Guru gagal ditambah');
+		}
+
+		return redirect()->to('admin/dataguru');
+	}
+
+	public function delDataGuru($id)
+	{
+		$cek = $this->adminModel->delDataGuru($id);
+
+		if ($cek > 0) {
+			$this->session->setFlashData('del-guru-b', 'Data guru berhasil dihapus');
+		} else {
+			$this->session->setFlashData('del-guru-g', 'Data guru gagal dihapus');
 		}
 
 		return redirect()->to('admin/dataguru');

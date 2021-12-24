@@ -119,7 +119,12 @@ class AdminModel extends Model
 			'alamat' => $data['alamat-guru']
 		]);
 		$idguru = $this->getInsertID();
-		$this->saveKelasGuru($data, $idguru);
+
+		if ($data['kelas'] === 'default') {
+			return $this->db->affectedRows();
+		} else {
+			$this->saveKelasGuru($data, $idguru);
+		}
 
 		return $this->db->affectedRows();
 	}
@@ -131,6 +136,15 @@ class AdminModel extends Model
 		$this->builder->update([
 			'id_guru' => $id
 		]);
+	}
+
+	public function delDataGuru($id)
+	{
+		$this->builder = $this->db->table('guru');
+		$this->builder->where('id_guru', $id);
+		$this->builder->delete();
+
+		return $this->db->affectedRows();
 	}
 
 	public function saveDataKelas($data)

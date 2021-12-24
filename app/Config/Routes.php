@@ -38,6 +38,7 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('/userlists', 'Admin::index');
 $routes->get('/userlists/delete/(:num)', 'Admin::deleteUser/$1');
 $routes->get('/userlists/edit/(:num)', 'Admin::editUser/$1');
+$routes->get('/admin/dataguru/delete/(:num)', 'Admin::delDataGuru/$1');
 $routes->get('/kelas/delete/(:num)', 'Admin::delKelas/$1');
 $routes->get('/absensi', 'User::absensi');
 $routes->get('/rekap', 'User::rekap');

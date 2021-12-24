@@ -7,8 +7,16 @@
             <?= session()->getFlashData('guru-b'); ?>
         </div>
     <?php elseif (session()->getFlashData('guru-g')) : ?>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-danger" role="alert">
             <?= session()->getFlashData('guru-g'); ?>
+        </div>
+    <?php elseif (session()->getFlashData('del-guru-b')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashData('del-guru-b'); ?>
+        </div>
+    <?php elseif (session()->getFlashData('del-guru-g')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashData('del-guru-g'); ?>
         </div>
     <?php endif; ?>
 
@@ -17,7 +25,7 @@
 
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-plus-circle mr-2"></i>Tambah Data Guru</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addguru"><i class="fas fa-plus-circle mr-2"></i>Tambah Data Guru</button>
         </div>
     </div>
     <div class="row mt-3">
@@ -46,8 +54,8 @@
                                 <td><?= $row->alamat; ?></td>
                                 <td><?= $row->kelas; ?></td>
                                 <td>
-                                    <input type="text" value=<?= $row->id_guru; ?> hidden>
-                                    <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button>
+                                    <a href="<?= base_url(); ?>/admin/dataguru/edit/<?= $row->id_guru; ?>"><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button></a> |
+                                    <a href="<?= base_url(); ?>/admin/dataguru/delete/<?= $row->id_guru; ?>"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delmodal" onclick="return confirm('Yakin ingin menghapus data ini ?')">Hapus</button></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -59,11 +67,11 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="addguru" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addguruLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Guru</h5>
+                    <h5 class="modal-title" id="addguruLabel">Tambah Data Guru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -89,6 +97,7 @@
                                         <td><input type="textarea" class="form-control" placeholder="Alamat" name="alamat-guru[]"></td>
                                         <td>
                                             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="kelas[]">
+                                                <option value="default"></option>
                                                 <?php foreach ($kelas as $kl) : ?>
                                                     <option value="<?= $kl->kelas; ?>"><?= $kl->kelas; ?></option>
                                                 <?php endforeach; ?>
@@ -118,7 +127,7 @@
 <script>
     $(document).ready(function() {
         $('#add-btn').click(function() {
-            $('#tbdy').append('<tr><td><input type="text" class="form-control" placeholder="Nama" name="nama-guru[]"></td><td><select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jenkel[]"><option selected value="L">L</option><option value="P">P</option></select></td><td><input type="textarea" class="form-control" placeholder="Alamat" name="alamat-guru[]"></td><td><select class="form-select form-select-sm" aria-label=".form-select-sm example" name="kelas[]"><?php foreach ($kelas as $kl) : ?><option value="<?= $kl->kelas; ?>"><?= $kl->kelas; ?></option><?php endforeach; ?></select></td><td><button type="button" class="btn-close" id="del-btn"></button></td></tr>')
+            $('#tbdy').append('<tr><td><input type="text" class="form-control" placeholder="Nama" name="nama-guru[]"></td><td><select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jenkel[]"><option selected value="L">L</option><option value="P">P</option></select></td><td><input type="textarea" class="form-control" placeholder="Alamat" name="alamat-guru[]"></td><td><select class="form-select form-select-sm" aria-label=".form-select-sm example" name="kelas[]"><option value="default"></option><?php foreach ($kelas as $kl) : ?><option value="<?= $kl->kelas; ?>"><?= $kl->kelas; ?></option><?php endforeach; ?></select></td><td><button type="button" class="btn-close" id="del-btn"></button></td></tr>')
         })
 
         $('#tbdy').on('click', '#del-btn', function() {
