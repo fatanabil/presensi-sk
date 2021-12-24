@@ -84,7 +84,7 @@ class AdminModel extends Model
 	public function getKelas()
 	{
 		$this->builder = $this->db->table('kelas');
-		$this->builder->select('id_kelas, kelas, kelas.id_guru, guru.nama');
+		$this->builder->select('kelas.id_kelas, kelas, kelas.id_guru, guru.nama');
 		$this->builder->join('guru', 'kelas.id_guru = guru.id_guru', 'left');
 		$this->builder->orderBy('kelas', 'ASC');
 		$query = $this->builder->get()->getResult();
@@ -169,5 +169,18 @@ class AdminModel extends Model
 		$this->builder->delete();
 
 		return $this->db->affectedRows();
+	}
+
+	public function countSiswa($kelas)
+	{
+		if ($kelas) {
+			$this->builder = $this->db->table('siswa');
+			$this->builder->selectCount('siswa.nama', 'jumlah');
+			$this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
+			$this->builder->where('siswa.id_kelas', $kelas);
+			return $this->builder->get()->getResult()[0]->jumlah;
+		} else {
+			return 0;
+		}
 	}
 }

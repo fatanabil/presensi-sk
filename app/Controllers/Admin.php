@@ -129,6 +129,10 @@ class Admin extends BaseController
 		$data['kelas'] = $this->adminModel->getKelas();
 		$data['guru'] = $this->adminModel->getGuru();
 
+		foreach ($data['kelas'] as $dt) {
+			$dt->jumlah = $this->adminModel->countSiswa($dt->id_kelas);
+		}
+
 		return view('admin/kelas', $data);
 	}
 

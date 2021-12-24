@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addkelas"><i class="fas fa-plus-circle mr-2"></i>Tambah Data Guru</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addkelas"><i class="fas fa-plus-circle mr-2"></i>Tambah Data Kelas</button>
         </div>
     </div>
     <div class="row mt-3">
@@ -50,7 +50,7 @@
                                 <td><?= $i; ?></td>
                                 <td><?= $row->kelas; ?></td>
                                 <td><?= $row->nama; ?></td>
-                                <td>10</td>
+                                <td><?= $row->jumlah; ?></td>
                                 <td>
                                     <a href="<?= base_url(); ?>/admin/kelas/edit/<?= $row->id_kelas; ?>"><button class="btn btn-info btn-sm">Edit</button></a> |
                                     <a href="<?= base_url(); ?>/kelas/delete/<?= $row->id_kelas; ?>"><button class="btn btn-danger btn-sm">Hapus</button></a>
