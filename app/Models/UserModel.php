@@ -164,11 +164,16 @@ class UserModel extends Model
 
     public function livesearch($keyword, $kelas, $tglawal, $tglakhir)
     {
+        if ($tglawal == '' && $tglakhir == '') {
+            $tglawal = date('Y-m-d', strtotime(''));
+            $tglakhir = date('Y-m-d', strtotime(''));
+        }
+
         $this->builder = $this->db->table('siswa');
         $this->builder->select('siswa.id_siswa, siswa.nama, semester, tanggal, absen');
         $this->builder->join('absensi', 'absensi.id_siswa = siswa.id_siswa');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
-        $this->builder->like('nama', $keyword, 'both', true, true);
+        $this->builder->like('absensi.nama_siswa', $keyword, insensitiveSearch: true);
         $this->builder->where('tanggal >=', $tglawal);
         $this->builder->where('tanggal <=', $tglakhir);
         $this->builder->where('kelas', $kelas);

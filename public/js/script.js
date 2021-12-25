@@ -6,8 +6,6 @@ $(document).ready(function(){
     var kelas = $('#kelas').text()
     var smt = 'all'
 
-    console.log(g_tglAkhir)
-
     $('#toggle-date').click(function(){
         $('.tanggal').prop('disabled', function (_, val){
             return !val
@@ -32,7 +30,7 @@ $(document).ready(function(){
     function loadData(keyword, tglAwal, tglAkhir){
         $.ajax({
             url : base_url+"/user/livesearchsis",
-            method : "POST",
+            method : "post",
             data : {nama : keyword,
                     tglAwal : tglAwal,
                     tglAkhir : tglAkhir},

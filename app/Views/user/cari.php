@@ -21,11 +21,6 @@
                             <input type="text" placeholder="Tanggal Akhir" class="form-control tanggal" name="tanggal-akhir" id="tgl-akhir" onfocus="(this.type='date')" onblur="(this.type='text')">
                         </div>
                     </div>
-                    <!-- <div class="col-1">
-                        <div class="form-check form-switch mx-2 mt-1">
-                            <input class="form-check-input" type="checkbox" id="toggle-date" checked hidden />
-                        </div>
-                    </div> -->
                     <!-- <div class="col-md-3">
                         <button class="btn btn-success" style="width: 100px;" type="submit" id="button-addon2">Cari</button>
                     </div> -->
