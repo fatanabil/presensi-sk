@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    let base_url = 'http://localhost:8080'
+    // let base_url = 'http://localhost:8080'
+    let base_url = 'https://absensi-sk.herokuapp.com'
     var g_tglAwal = '1970-01-01'
     var g_tglAkhir = '2200-01-01'
     var search = ''
