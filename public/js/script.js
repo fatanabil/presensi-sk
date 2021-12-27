@@ -36,6 +36,7 @@ $(document).ready(function(){
                     tglAkhir : tglAkhir},
             success: function(data){
                 $('#result-cari').html(data)
+                console.log('Success');
             }
         })
     }

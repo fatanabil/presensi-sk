@@ -53,7 +53,7 @@
                                 <td><?= $row->jumlah; ?></td>
                                 <td>
                                     <a href="<?= base_url(); ?>/admin/kelas/edit/<?= $row->id_kelas; ?>"><button class="btn btn-info btn-sm">Edit</button></a> |
-                                    <a href="<?= base_url(); ?>/kelas/delete/<?= $row->id_kelas; ?>"><button class="btn btn-danger btn-sm">Hapus</button></a>
+                                    <a href="<?= base_url(); ?>/kelas/delete/<?= $row->id_kelas; ?>"><button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda ingin menghapus data ini ?')">Hapus</button></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -69,7 +69,7 @@
         <div class="modal-dialog modal-l">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addkelasLabel">Tambah Data Guru</h5>
+                    <h5 class="modal-title" id="addkelasLabel">Tambah Data Kelas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

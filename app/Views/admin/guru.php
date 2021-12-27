@@ -55,7 +55,7 @@
                                 <td><?= $row->kelas; ?></td>
                                 <td>
                                     <a href="<?= base_url(); ?>/admin/dataguru/edit/<?= $row->id_guru; ?>"><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button></a> |
-                                    <a href="<?= base_url(); ?>/admin/dataguru/delete/<?= $row->id_guru; ?>"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delmodal" onclick="return confirm('Yakin ingin menghapus data ini ?')">Hapus</button></a>
+                                    <a href="<?= base_url(); ?>/admin/dataguru/delete/<?= $row->id_guru; ?>"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delmodal" onclick="return confirm('Apakah anda ingin menghapus data ini ?')">Hapus</button></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
