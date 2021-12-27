@@ -152,7 +152,7 @@ class UserModel extends Model
         $this->builder->select('siswa.id_siswa, siswa.nama, semester, tanggal, absen');
         $this->builder->join('absensi', 'absensi.id_siswa = siswa.id_siswa');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
-        $this->builder->like('nama', $keyword, 'both', true, true);
+        $this->builder->like('absensi.nama_siswa', $keyword, insensitiveSearch: true);
         $this->builder->where('kelas', $kelas);
         $this->builder->orderBy('tanggal', 'DESC');
         $this->builder->orderBy('siswa.nama', 'ASC');
@@ -162,12 +162,10 @@ class UserModel extends Model
         return $query;
     }
 
-    public function livesearch($keyword, $kelas, $tglawal, $tglakhir)
+    public function livesearch($keyword, $kelas, $tglawal = '', $tglakhir = '')
     {
-        if ($tglawal == '' && $tglakhir == '') {
-            $tglawal = date('Y-m-d', strtotime(''));
-            $tglakhir = date('Y-m-d', strtotime(''));
-        }
+        $tglawal = date('Y-m-d', strtotime($tglawal));
+        $tglakhir = date('Y-m-d', strtotime($tglakhir));
 
         $this->builder = $this->db->table('siswa');
         $this->builder->select('siswa.id_siswa, siswa.nama, semester, tanggal, absen');
@@ -209,6 +207,9 @@ class UserModel extends Model
 
     public function getTglDistLive($keyword, $kelas, $tglawal, $tglakhir)
     {
+        $tglawal = date('Y-m-d', strtotime($tglawal));
+        $tglakhir = date('Y-m-d', strtotime($tglakhir));
+
         $this->builder = $this->db->table('absensi');
         $this->builder->select('tanggal');
         $this->builder->join('siswa', 'siswa.id_siswa = absensi.id_siswa');

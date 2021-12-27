@@ -116,8 +116,8 @@ class User extends BaseController
     {
         $data['title'] = 'Cari Data Absen';
         $keyword = '';
-        $tglAwal = date('Y-m-d');
-        $tglAkhir = date('Y-m-d');
+        $tglAwal = date('Y-m-d', strtotime(''));
+        $tglAkhir = date('Y-m-d', strtotime('2200-01-01'));
 
         $dt = $this->request->getPost();
 
@@ -195,10 +195,6 @@ class User extends BaseController
         $nama = $this->request->getPost('nama');
         $tglAwal = $this->request->getPost('tglAwal');
         $tglAkhir = $this->request->getPost('tglAkhir');
-
-        d($nama);
-        // d($tglAwal);
-        // d($tglAkhir);
 
         if (isset($nama)) {
             if ($tglAwal != '' and $tglAkhir != '') {

@@ -1,7 +1,7 @@
 $(document).ready(function(){
     let base_url = 'http://localhost:8080'
-    var g_tglAwal = ''
-    var g_tglAkhir = ''
+    var g_tglAwal = '1970-01-01'
+    var g_tglAkhir = '2200-01-01'
     var search = ''
     var kelas = $('#kelas').text()
     var smt = 'all'
@@ -34,7 +34,7 @@ $(document).ready(function(){
             data : {nama : keyword,
                     tglAwal : tglAwal,
                     tglAkhir : tglAkhir},
-            success : function(data){
+            success: function(data){
                 $('#result-cari').html(data)
             }
         })
