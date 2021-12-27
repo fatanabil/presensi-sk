@@ -310,4 +310,55 @@ class User extends BaseController
             return redirect()->to('user/edit');
         }
     }
+
+    public function siswa()
+    {
+        $siswa = $this->userModel->getSiswabyKelas($this->nmkelas);
+        $data['siswa'] = $siswa->getResult();
+
+        return view('user/siswa', $data);
+    }
+
+    public function adddatasiswa()
+    {
+        $data = $this->request->getPost();
+        $data = $this->flipDiagonally($data);
+
+        foreach ($data as $dt) {
+            $cek = $this->userModel->addDataSiswa($dt);
+        }
+
+        if ($cek > 0) {
+            $this->session->setFlashData('siswa-b', 'Data siswa berhasil ditambahkan');
+        } else {
+            $this->session->setFlashData('siswa-g', 'Data siswa gagal ditambahkan');
+        }
+
+        return redirect()->to('/siswa');
+    }
+
+    public function deleteSiswa($id)
+    {
+        $cek = $this->userModel->delDataSiswa($id);
+
+        if ($cek > 0) {
+            $this->session->setFlashData('del-siswa-b', 'Data siswa berhasil dihapus');
+        } else {
+            $this->session->setFlashData('del-siswa-g', 'Data siswa gagal dihapus');
+        }
+
+        return redirect()->to('/siswa');
+    }
+
+    function flipDiagonally($arr)
+    {
+        $out = array();
+        foreach ($arr as $key => $subarr) {
+            foreach ($subarr as $subkey => $subvalue) {
+                $out[$subkey][$key] = $subvalue;
+            }
+        }
+
+        return $out;
+    }
 }

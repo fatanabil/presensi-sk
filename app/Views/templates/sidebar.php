@@ -91,6 +91,12 @@
                 <span>Rekap Absen</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('siswa'); ?>">
+                <i class="fas fa-user-graduate"></i>
+                <span>Data Siswa</span></a>
+        </li>
+
         <hr class="sidebar-divider">
     <?php endif; ?>
 

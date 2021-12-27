@@ -4,12 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Database\BaseBuilder;
 use CodeIgniter\Model;
+use PHPUnit\Runner\AfterTestFailureHook;
 
 class UserModel extends Model
 {
     protected $table = 'users';
     protected $db, $builder;
-    protected $allowedFields = ['tanggal', 'id_siswa', 'nama_siswa', 'semester', 'absen', 'id_user', 'username', 'fullname', 'password_hash', 'salt', 'level'];
+    protected $allowedFields = ['tanggal', 'id_siswa', 'nama_siswa', 'semester', 'absen', 'id_user', 'username', 'fullname', 'password_hash', 'salt', 'level', 'alamat', 'jenkel', 'id_kelas', 'nama'];
 
     public function __construct()
     {
@@ -71,9 +72,10 @@ class UserModel extends Model
     public function getSiswabyKelas($kelas)
     {
         $this->builder = $this->db->table('siswa');
-        $this->builder->select('id_siswa, nama, kelas, jenkel, alamat');
+        $this->builder->select('id_siswa, nama, kelas, jenkel, alamat, kelas.id_kelas');
         $this->builder->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
         $this->builder->where('kelas', $kelas);
+        $this->builder->orderBy('nama', 'asc');
         $query = $this->builder->get();
 
         return $query;
@@ -282,5 +284,27 @@ class UserModel extends Model
         $this->save([
             'id_user' => $idUser
         ]);
+    }
+
+    public function addDataSiswa($data)
+    {
+        $this->builder = $this->db->table('siswa');
+        $this->save([
+            'nama' => $data['nama'],
+            'id_kelas' => $data['kelas'],
+            'jenkel' => $data['jenkel'],
+            'alamat' => $data['alamat']
+        ]);
+
+        return $this->db->affectedRows();
+    }
+
+    public function delDataSiswa($id)
+    {
+        $this->builder = $this->db->table('siswa');
+        $this->builder->where('id_siswa', $id);
+        $this->delete();
+
+        return $this->db->affectedRows();
     }
 }
