@@ -72,7 +72,12 @@ $(document).ready(function(){
 
     $('#tgl-awal').change(function(){
         var tglAwal = $(this).val()
-        g_tglAwal = tglAwal
+        console.log(tglAwal);
+        if(tglAwal == ''){
+            g_tglAwal = '1970-01-01'
+        } else{
+            g_tglAwal = tglAwal
+        }
 
         if(search != ''){
             loadData(search, g_tglAwal, g_tglAkhir);
@@ -87,7 +92,11 @@ $(document).ready(function(){
     
     $('#tgl-akhir').change(function(){
         var tglAkhir = $(this).val()
-        g_tglAkhir = tglAkhir
+        if(tglAkhir == ''){
+            g_tglAkhir = '2200-01-01'
+        } else{
+            g_tglAkhir = tglAkhir
+        }
 
         if(search != ''){
             loadData(search, g_tglAwal, g_tglAkhir);
