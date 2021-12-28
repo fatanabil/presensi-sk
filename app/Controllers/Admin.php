@@ -166,4 +166,34 @@ class Admin extends BaseController
 
 		return redirect()->to('admin/datakelas');
 	}
+
+	public function editKelas($id)
+	{
+		$kelas = $this->adminModel->getKelas();
+		$data['guru'] = $this->adminModel->getGuru();
+
+		foreach ($kelas as $kl) {
+			if ($kl->id_kelas == $id) {
+				$data['kelas'] = $kl;
+			}
+		}
+
+		return view('admin/kelas-edit', $data);
+	}
+
+	public function updateKelas($id)
+	{
+		$data = $this->request->getPost();
+		$data['id_kelas'] = $id;
+
+		$cek = $this->adminModel->updatekelas($data);
+
+		if ($cek > 0) {
+			$this->session->setFlashData('up-kelas-b', 'Data kelas berhasil diupdate');
+		} else {
+			$this->session->setFlashData('up-kelas-g', 'Data kelas gagal diupdate');
+		}
+
+		return redirect()->to('admin/datakelas');
+	}
 }

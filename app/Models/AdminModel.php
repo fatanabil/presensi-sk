@@ -9,7 +9,7 @@ class AdminModel extends Model
 {
 	protected $table = 'users';
 	protected $db, $builder;
-	protected $allowedFields = ['id_user', 'username', 'fullname', 'nama', 'jenkel', 'alamat', 'id_guru', 'kelas'];
+	protected $allowedFields = ['id_user', 'username', 'fullname', 'nama', 'jenkel', 'alamat', 'id_guru', 'kelas', 'kelas.id_guru', 'id_kelas'];
 
 	public function __construct()
 	{
@@ -138,29 +138,6 @@ class AdminModel extends Model
 		]);
 	}
 
-	public function updateDataGuru($id, $data, $idKelas)
-	{
-		$this->builder = $this->db->table('guru');
-		$this->builder->where('id_guru', $id);
-		$this->update([
-			'nama' => $data['nama'],
-			'jenkel' => $data['jenkel'],
-			'alamat' => $data['alamat']
-		]);
-		$this->updateKelasGuru($idKelas, $id);
-
-		return $this->db->affectedRows();
-	}
-
-	public function updateKelasGuru($idKelas, $idGuru)
-	{
-		$this->builder = $this->db->table('kelas');
-		$this->builder->where('id_kelas', $idKelas);
-		$this->update([
-			'id_guru' => $idGuru
-		]);
-	}
-
 	public function delDataGuru($id)
 	{
 		$this->builder = $this->db->table('guru');
@@ -179,6 +156,21 @@ class AdminModel extends Model
 		$this->builder = $this->db->table('kelas');
 		$this->save([
 			'kelas' => $data['nama-kelas'],
+			'id_guru' => $data['guru']
+		]);
+
+		return $this->db->affectedRows();
+	}
+
+	public function updatekelas($data)
+	{
+		if ($data['guru'] == 'default') {
+			$data['guru'] = null;
+		}
+
+		$this->builder = $this->db->table('kelas');
+		$this->builder->where('id_kelas', $data['id_kelas']);
+		$this->builder->update([
 			'id_guru' => $data['guru']
 		]);
 

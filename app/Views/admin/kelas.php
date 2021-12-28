@@ -11,6 +11,14 @@
         <div class="alert alert-danger" role="alert">
             <?= session()->getFlashData('kelas-g'); ?>
         </div>
+    <?php elseif (session()->getFlashdata('up-kelas-b')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashData('up-kelas-b'); ?>
+        </div>
+    <?php elseif (session()->getFlashdata('up-kelas-g')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashData('up-kelas-g'); ?>
+        </div>
     <?php elseif (session()->getFlashdata('del-kelas-b')) : ?>
         <div class="alert alert-success" role="alert">
             <?= session()->getFlashData('del-kelas-b'); ?>
@@ -53,7 +61,7 @@
                                 <td><?= $row->jumlah; ?></td>
                                 <td>
                                     <a href="<?= base_url(); ?>/admin/kelas/edit/<?= $row->id_kelas; ?>"><button class="btn btn-info btn-sm">Edit</button></a> |
-                                    <a href="<?= base_url(); ?>/kelas/delete/<?= $row->id_kelas; ?>"><button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda ingin menghapus data ini ?')">Hapus</button></a>
+                                    <a href="<?= base_url(); ?>/admin/kelas/delete/<?= $row->id_kelas; ?>"><button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda ingin menghapus data ini ?')">Hapus</button></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>
