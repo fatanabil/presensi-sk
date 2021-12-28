@@ -62,7 +62,7 @@ class AdminModel extends Model
 	public function getDataGuruAll()
 	{
 		$this->builder = $this->db->table('users');
-		$this->builder->select('users.id_user, username, guru.nama, guru.id_guru, guru.jenkel, guru.alamat, kelas.kelas');
+		$this->builder->select('users.id_user, username, guru.nama, guru.id_guru, guru.jenkel, guru.alamat, kelas.kelas, kelas.id_kelas');
 		$this->builder->join('user_guru_group', 'user_guru_group.id_user = users.id_user');
 		$this->builder->join('guru', 'guru.id_guru = user_guru_group.id_guru', 'right');
 		$this->builder->join('kelas', 'kelas.id_guru = guru.id_guru', 'left');
@@ -135,6 +135,29 @@ class AdminModel extends Model
 		$this->builder->where('kelas', $data['kelas']);
 		$this->builder->update([
 			'id_guru' => $id
+		]);
+	}
+
+	public function updateDataGuru($id, $data, $idKelas)
+	{
+		$this->builder = $this->db->table('guru');
+		$this->builder->where('id_guru', $id);
+		$this->update([
+			'nama' => $data['nama'],
+			'jenkel' => $data['jenkel'],
+			'alamat' => $data['alamat']
+		]);
+		$this->updateKelasGuru($idKelas, $id);
+
+		return $this->db->affectedRows();
+	}
+
+	public function updateKelasGuru($idKelas, $idGuru)
+	{
+		$this->builder = $this->db->table('kelas');
+		$this->builder->where('id_kelas', $idKelas);
+		$this->update([
+			'id_guru' => $idGuru
 		]);
 	}
 
