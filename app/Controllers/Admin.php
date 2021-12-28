@@ -154,18 +154,6 @@ class Admin extends BaseController
 		return redirect()->to('admin/datakelas');
 	}
 
-	public function delKelas($id)
-	{
-		$cek = $this->adminModel->delKelas($id);
-
-		if ($cek > 0) {
-			$this->session->setFlashData('del-kelas-b', 'Data kelas berhasil dihapus');
-		} else {
-			$this->session->setFlashData('del-kelas-g', 'Data kelas gagal dihapus');
-		}
-
-		return redirect()->to('admin/datakelas');
-	}
 
 	public function editKelas($id)
 	{
@@ -192,6 +180,19 @@ class Admin extends BaseController
 			$this->session->setFlashData('up-kelas-b', 'Data kelas berhasil diupdate');
 		} else {
 			$this->session->setFlashData('up-kelas-g', 'Data kelas gagal diupdate');
+		}
+
+		return redirect()->to('admin/datakelas');
+	}
+
+	public function delKelas($id)
+	{
+		$cek = $this->adminModel->delKelas($id);
+
+		if ($cek > 0) {
+			$this->session->setFlashData('del-kelas-b', 'Data kelas berhasil dihapus');
+		} else {
+			$this->session->setFlashData('del-kelas-g', 'Data kelas gagal dihapus');
 		}
 
 		return redirect()->to('admin/datakelas');
