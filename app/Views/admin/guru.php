@@ -10,6 +10,14 @@
         <div class="alert alert-danger" role="alert">
             <?= session()->getFlashData('guru-g'); ?>
         </div>
+    <?php elseif (session()->getFlashData('up-guru-b')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashData('up-guru-b'); ?>
+        </div>
+    <?php elseif (session()->getFlashData('up-guru-g')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashData('up-guru-g'); ?>
+        </div>
     <?php elseif (session()->getFlashData('del-guru-b')) : ?>
         <div class="alert alert-success" role="alert">
             <?= session()->getFlashData('del-guru-b'); ?>
@@ -29,18 +37,18 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-lg-10">
+        <div class="col-lg">
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <thead>
                         <tr>
                             <td>No.</td>
                             <td>Nama</td>
-                            <td>Username</td>
-                            <td>Jenis Kelamin</td>
-                            <td>Alamat</td>
+                            <td style="width: 10rem;">Username</td>
+                            <td style="width: 10rem;">Jenis Kelamin</td>
+                            <td style="width: 20rem;">Alamat</td>
                             <td>Kelas</td>
-                            <td>Aksi</td>
+                            <td style="width: 10rem;">Aksi</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,8 +62,8 @@
                                 <td><?= $row->alamat; ?></td>
                                 <td><?= $row->kelas; ?></td>
                                 <td>
-                                    <a href="<?= base_url(); ?>/admin/dataguru/edit/<?= $row->id_guru; ?>"><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button></a> |
-                                    <a href="<?= base_url(); ?>/admin/dataguru/delete/<?= $row->id_guru; ?>"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delmodal" onclick="return confirm('Apakah anda ingin menghapus data ini ?')">Hapus</button></a>
+                                    <a href="<?= base_url(); ?>/admin/guru/edit/<?= $row->id_guru; ?>"><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button></a> |
+                                    <a href="<?= base_url(); ?>/admin/guru/delete/<?= $row->id_guru; ?>"><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delmodal" onclick="return confirm('Apakah anda ingin menghapus data ini ?')">Hapus</button></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>

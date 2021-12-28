@@ -138,6 +138,47 @@ class AdminModel extends Model
 		]);
 	}
 
+	public function updateDataGuru($data)
+	{
+		$this->nullGuruKelas($data);
+		$this->builder = $this->db->table('guru');
+		$this->builder->where('id_guru', $data['id_guru']);
+		$this->builder->update([
+			'nama' => $data['nama'],
+			'jenkel' => $data['jenkel'],
+			'alamat' => $data['alamat']
+		]);
+
+		$gr = $this->db->affectedRows();
+		$kl = $this->updateGuruKelas($data);
+
+		if ($gr > 0 && $kl > 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	public function nullGuruKelas($data)
+	{
+		$this->builder = $this->db->table('kelas');
+		$this->builder->where('id_guru', $data['id_guru']);
+		$this->builder->update([
+			'id_guru' => null
+		]);
+	}
+
+	public function updateGuruKelas($data)
+	{
+		$this->builder = $this->db->table('kelas');
+		$this->builder->where('id_kelas', $data['kelas']);
+		$this->builder->update([
+			'id_guru' => $data['id_guru']
+		]);
+
+		return $this->db->affectedRows();
+	}
+
 	public function delDataGuru($id)
 	{
 		$this->builder = $this->db->table('guru');

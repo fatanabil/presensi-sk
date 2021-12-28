@@ -99,6 +99,38 @@ class Admin extends BaseController
 		return redirect()->to('admin/dataguru');
 	}
 
+	public function editDataGuru($id)
+	{
+		$guru = $this->adminModel->getDataGuruAll();
+		$data['kelas'] = $this->adminModel->getKelas();
+
+		foreach ($guru as $gr) {
+			if ($gr->id_guru == $id) {
+				$data['guru'] = $gr;
+			}
+		}
+
+		return view('admin/guru-edit', $data);
+	}
+
+	public function updateDataGuru($id)
+	{
+		$data = $this->request->getPost();
+
+		if (isset($data)) {
+			$data['id_guru'] = $id;
+			$cek = $this->adminModel->updateDataGuru($data);
+		}
+
+		if ($cek > 0) {
+			$this->session->setFlashdata('up-guru-b', 'Data Guru berhasil diupdate');
+		} else {
+			$this->session->setFlashdata('up-guru-g', 'Data Guru gagal diupdate');
+		}
+
+		return redirect()->to('admin/dataguru');
+	}
+
 	public function delDataGuru($id)
 	{
 		$cek = $this->adminModel->delDataGuru($id);
