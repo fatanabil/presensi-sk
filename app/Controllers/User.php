@@ -20,7 +20,10 @@ class User extends BaseController
         if ($this->session->has('isLogin')) {
             if ($this->session->get('level') == 'user') {
                 $this->username = $this->session->get('username');
-                if (!$this->username == 0) {
+
+                // check user is activated?
+                $this->user = $this->userModel->getDataGuru($this->username);
+                if (!$this->user == 0) {
                     $this->user = $this->userModel->getDataGuru($this->username);
 
                     $this->nmkelas = $this->user->kelas;
