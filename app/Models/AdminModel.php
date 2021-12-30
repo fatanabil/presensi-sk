@@ -76,6 +76,7 @@ class AdminModel extends Model
 	{
 		$this->builder = $this->db->table('guru');
 		$this->builder->select('id_guru, nama');
+		$this->builder->orderBy('nama', 'asc');
 		$result = $this->builder->get()->getResult();
 
 		return $result;
