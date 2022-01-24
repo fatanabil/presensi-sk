@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ABSENSI-SK</title>
+    <title>PRESENSI-SK</title>
     <!-- logo -->
     <link rel="icon" href="<?= base_url(); ?>/favicon.ico" type="image/gif">
 
