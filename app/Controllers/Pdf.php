@@ -102,6 +102,6 @@ class Pdf extends BaseController
 			$i++;
 		}
 
-		$pdf->Output('I', $namaFile);
+		$pdf->Output('D', $namaFile);
 	}
 }
